@@ -1,0 +1,54 @@
+.container {
+  /* height: 200px; */
+  max-width: 100%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.postsContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.postsContainer::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+}
+
+.sliderIcon {
+  display: none;
+  position: absolute;
+  opacity: 0.7;
+  cursor: pointer;
+  z-index: 9999;
+  color: blanchedalmond;
+  border-radius: 50%;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+}
+
+.sliderIcon:hover {
+  opacity: 1;
+}
+
+.left {
+  left: 0px;
+}
+
+.rigth {
+  right: 0px;
+}
+
+@media screen and (min-width: 650px) {
+  .sliderIcon {
+    display: initial;
+  }
+}

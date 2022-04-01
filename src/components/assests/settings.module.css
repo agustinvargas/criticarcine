@@ -1,0 +1,7 @@
+.settingIcon {
+  cursor: pointer;
+}
+.settingIcon:hover {
+  transform: rotate(720deg);
+  transition: 1s;
+}
