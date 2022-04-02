@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { SITES } from '../utils/sitesList';
+
 export const SitesChecked = createContext([]);
 
 const SitesCheckedProvider = ({ children }) => {

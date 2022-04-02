@@ -57,16 +57,6 @@ const Card = ({ date, title, excerpt, link, content, img, author }) => {
               marginBottom: '10px',
             }}
           >
-            {/* <Col span={3}>
-                <CardNext.Image
-                  src='http://hacerselacritica.com/wp-content/uploads/2022/03/Azor-02-scaled.jpg'
-                  css={{ background: 'black' }}
-                  height={40}
-                  width={40}
-                  alt='Breathing app icon'
-                />
-              </Col> */}
-
             <Text color='#d1d1d1' size={12} className={styles.cut_extract}>
               {excerptFormatted && parse(excerptFormatted)}
             </Text>

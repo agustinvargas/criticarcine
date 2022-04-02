@@ -3,11 +3,6 @@
   min-width: 285px;
   max-width: 285px;
   margin: 0 5px !important;
-
-  /* min-width: 285px; MOVIL*/
-  /* max-width: 285px; */
-
-  /* ver max-width */
 }
 .cut_extract > p {
   text-overflow: ellipsis;

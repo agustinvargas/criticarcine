@@ -1,5 +1,11 @@
 import React from 'react';
-import { Modal as ModalNext, Link, Button, Text } from '@nextui-org/react';
+import {
+  Modal as ModalNext,
+  Link,
+  Button,
+  Text,
+  Image,
+} from '@nextui-org/react';
 import useSitesChecked from '../../hooks/useSitesChecked';
 
 export default function Modal({
@@ -32,12 +38,7 @@ export default function Modal({
       <ModalNext.Body id='modal-description'>
         {isPost && (
           <>
-            <img
-              width='100%'
-              src={img}
-              alt={title}
-              style={{ margin: '15px 0' }}
-            />
+            <img src={img} alt={title} style={{ margin: '15px 0' }} />
             <Link href={link} block icon target='_blank'>
               Leé esta crítica en su sitio original para visualizar
               correctamente las imágenes y otros contenidos multimedia

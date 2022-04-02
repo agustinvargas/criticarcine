@@ -16,15 +16,6 @@ function MyApp({ Component, pageProps }) {
         </DataFromAPIs>
       </SitesCheckedProvider>
     </NextUI>
-    // <NextUI>
-    //   <SitesCheckedProvider>
-    //     <DataFromAPIs>
-    //       <Layout>
-    //         <Component {...pageProps} />
-    //       </Layout>
-    //     </DataFromAPIs>
-    //   </SitesCheckedProvider>
-    // </NextUI>
   );
 }
 

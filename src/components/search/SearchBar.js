@@ -31,7 +31,6 @@ const SearchBar = () => {
       (async () => {
         try {
           console.log('PALABRA A BUSCAR', value);
-          console.log('siteToSearch', sites);
           setLoading(true);
           const valToString = value.toString();
           const queries = sites.map(site => {
@@ -44,6 +43,7 @@ const SearchBar = () => {
           const allData = await Promise.allSettled(
             queries.map(query => axios.get(query))
           ).then(values => {
+            console.log('values', values);
             const dataWithSiteRef = values.map((value, i) => {
               const ob = {
                 ...value,
@@ -51,11 +51,14 @@ const SearchBar = () => {
                 id: sites[i].id,
                 avatar: sites[i].avatar,
               };
+              console.log('ob', ob);
               return ob;
             });
             const onlySuccessData = dataWithSiteRef.filter(
               data => data.status === 'fulfilled' && data.value.data.length > 0
             );
+
+            console.log('onlySuccessData', onlySuccessData);
             return onlySuccessData;
           });
           setData(allData);

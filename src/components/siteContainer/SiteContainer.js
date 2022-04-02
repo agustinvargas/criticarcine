@@ -1,5 +1,5 @@
-import { Spacer, Text } from '@nextui-org/react';
 import React, { memo } from 'react';
+import { Spacer, Text } from '@nextui-org/react';
 import CardSlider from '../cardSlider/CardSlider';
 import styles from './SiteContainer.module.css';
 
@@ -22,5 +22,7 @@ const SiteContainer = memo(({ data }) => {
     </section>
   );
 });
+
+SiteContainer.displayName = 'SiteContainer';
 
 export default SiteContainer;

@@ -1,24 +1,38 @@
-import { Button, useModal } from '@nextui-org/react';
-import React from 'react';
-import Modal from '../modal/Modal';
-import LastArticlesList from './LastArticlesList';
+import { useState, useEffect } from 'react';
+import { Button } from '@nextui-org/react';
+// import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const LastArticlesButton = ({ lastArticles }) => {
-  const { setVisible, bindings } = useModal(false);
+const LastArticlesButton = () => {
+  const router = useRouter();
+  const [btnLabel, setBtnLabel] = useState('');
+
+  useEffect(() => {
+    if (router.pathname === '/') {
+      setBtnLabel('Críticas recientes');
+      return;
+    }
+    if (router.pathname === '/ultimas') {
+      setBtnLabel('Buscar críticas');
+      return;
+    }
+
+    return;
+  }, [router.pathname, setBtnLabel]);
+
+  const handleNav = () => {
+    if (router.pathname === '/') {
+      router.push('/ultimas');
+    }
+    if (router.pathname === '/ultimas') {
+      router.push('/');
+    }
+  };
+
   return (
-    <>
-      <Button color='warning' auto ghost onClick={() => setVisible(true)}>
-        Críticas recientes
-      </Button>
-      <Modal
-        setVisible={setVisible}
-        bindings={bindings}
-        isPost={false}
-        title='Últimos posteos'
-        content={<LastArticlesList lastArticles={lastArticles} />}
-        fc='fc'
-      />
-    </>
+    <Button color='warning' auto ghost onClick={handleNav}>
+      {btnLabel}
+    </Button>
   );
 };
 

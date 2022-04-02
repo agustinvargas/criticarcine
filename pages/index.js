@@ -24,10 +24,8 @@ const Home = () => {
               size='lg'
               css={{
                 display: 'flex',
-                // flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                // margin: 'auto',
               }}
             />
           )
@@ -42,10 +40,8 @@ const Home = () => {
               size='xl'
               css={{
                 display: 'flex',
-                // flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                // margin: 'auto',
               }}
             />
           </>

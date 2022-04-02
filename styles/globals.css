@@ -1,6 +1,22 @@
+* {
+  scroll-behavior: smooth;
+}
 .nextui-c-jeuecp {
   font-size: 1rem;
 }
+
+small {
+  font-size: 13px !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.avatar-container > div > span {
+  margin: -5px !important;
+} /* circles position */
+
 @media screen and (min-width: 650px) {
   .nextui-c-jeuecp {
     font-size: 1.3rem;

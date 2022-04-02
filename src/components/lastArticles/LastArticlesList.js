@@ -32,11 +32,12 @@ const LastArticlesList = ({ lastArticles }) => {
       {data?.length > 0 ? (
         data?.map(d => (
           <Collapse title={d?.site} key={d?.id}>
-            {d?.value?.data?.map(article => (
+            {d?.value?.data?.map((article, i) => (
               <Link
-                css={{ margin: '12px 0' }}
                 href={article?.link}
                 target='__blank'
+                key={i}
+                css={{ margin: '12px 0', padding: '0', display: 'block' }}
               >
                 {article?.title?.rendered}
               </Link>
@@ -49,10 +50,8 @@ const LastArticlesList = ({ lastArticles }) => {
           size='lg'
           css={{
             display: 'flex',
-            // flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            // margin: 'auto',
           }}
         />
       )}

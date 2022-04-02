@@ -20,19 +20,38 @@ const Navbar = () => {
         <LastArticlesButton />
       </Grid>
       <Grid xs={12} md={4}>
-        {' '}
-        <Text
-          h1
-          size={60}
-          weight='bold'
+        <Container
           css={{
+            p: '0',
+            display: 'flex',
+            flexDirection: 'column',
             justifyContent: 'center',
-            margin: 'auto',
-            textGradient: '45deg, $blue500 -20%, $pink500 50%',
+            alignItems: 'center',
           }}
         >
-          Criticar
-        </Text>
+          <Text
+            h1
+            size={60}
+            weight='bold'
+            css={{
+              justifyContent: 'center',
+              margin: 'auto',
+              textGradient: '45deg, $blue500 -20%, $pink500 50%',
+            }}
+          >
+            Criticar
+          </Text>
+
+          {/* <Text
+              size={15}
+              weight='bold'
+              css={{
+                textGradient: '45deg, $blue500 -20%, $pink500 50%',
+              }}
+            > */}
+          <em>Críticas de cine en un solo lugar</em>
+          {/* </Text> */}
+        </Container>
       </Grid>
       <Grid
         xs={0}
@@ -57,41 +76,6 @@ const Navbar = () => {
         <SwitcherTheme />
       </Grid>
     </Grid.Container>
-    // <Container
-    //   fluid
-    //   css={{
-    //     display: 'flex',
-    //     flexDirection: 'row',
-    //     flexWrap: 'nowrap',
-    //     // en celular, column
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     // gap: '1.5em',
-    //     margin: '10px 0',
-    //   }}
-    // >
-    //   <Text h1 size={60} weight='bold'>
-    //     Critic
-    //     <span style={{ textGradient: '45deg, $blue500 -20%, $pink500 50%' }}>
-    //       ar
-    //     </span>
-    //   </Text>
-    //   <Container
-    //     css={{
-    //       display: 'flex',
-    //       flexDirection: 'row',
-
-    //       justifyContent: 'end',
-    //       //   en movil, center
-    //       alignItems: 'center',
-    //       gap: '1.5em',
-    //     }}
-    //   >
-    //     <LastArticlesButton />
-    // <Settings />
-    // <SwitcherTheme />
-    //   </Container>
-    // </Container>
   );
 };
 

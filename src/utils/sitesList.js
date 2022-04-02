@@ -13,7 +13,7 @@ export const SITES = [
   },
   {
     name: 'Micropsia',
-    reqDirection: 'http://micropsia.com/wp-json/wp/v2/posts',
+    reqDirection: 'http://micropsiacine.com/wp-json/wp/v2/posts',
     id: 2,
     avatar:
       'https://www.micropsiacine.com/wp-content/themes/micropsia/favicon.ico',

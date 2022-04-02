@@ -14,8 +14,6 @@ const CardSlider = ({ posts, id }) => {
     slider.scrollLeft += 1100;
   };
 
-  // console.log('que es post en card', post);
-  console.log('que es posts en card en ' + id, posts);
   const needArrows = posts?.length < 3 && 'none';
 
   return (
