@@ -1,10 +1,12 @@
 import React from 'react';
 import { Checkbox } from '@nextui-org/react';
 import useSitesChecked from '../../hooks/useSitesChecked';
-import { SITES } from '../../utils/sitesList';
+import { orderByName, SITES } from '../../utils/sitesList';
 
 const SitesList = () => {
   const { sites, setSites } = useSitesChecked();
+
+  const orderSites = orderByName(SITES);
 
   const handleChange = e => {
     const res = SITES.filter(item => e.includes(item.name));
@@ -17,10 +19,9 @@ const SitesList = () => {
       value={sites.map(site => site.name)}
       onChange={e => handleChange(e)}
     >
-      {SITES.map((site, i) => (
+      {orderSites.map((site, i) => (
         <Checkbox key={i} value={site.name}>
           {site.name}
-          {console.log(site.name)}
         </Checkbox>
       ))}
     </Checkbox.Group>

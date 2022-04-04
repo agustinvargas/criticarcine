@@ -9,7 +9,7 @@ const CardSlider = ({ posts, id }) => {
     startX: 0,
     scrollLeft: 0,
   });
-
+  console.log('POST', posts);
   const needArrows = posts?.length < 3 && 'none';
   const needDrag = Boolean(posts?.length > 2);
 

@@ -4,7 +4,7 @@ import {
   Link,
   Button,
   Text,
-  Image,
+  // Image,
 } from '@nextui-org/react';
 import useSitesChecked from '../../hooks/useSitesChecked';
 
@@ -75,7 +75,13 @@ export default function Modal({
             target='_blank'
             auto
             onClick={() => {
-              localStorage.setItem('sitesToSearch', JSON.stringify(sites));
+              const excludeReqDirection = sites.map(
+                ({ reqDirection, ...rest }) => rest
+              );
+              localStorage.setItem(
+                'sitesToSearch',
+                JSON.stringify(excludeReqDirection)
+              );
               setVisible(false);
             }}
             css={{ color: 'white' }}

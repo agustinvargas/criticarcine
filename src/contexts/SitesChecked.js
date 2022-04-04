@@ -7,7 +7,19 @@ const SitesCheckedProvider = ({ children }) => {
   const [sites, setSites] = useState(SITES);
 
   useEffect(() => {
-    setSites(JSON.parse(localStorage.getItem('sitesToSearch')) || SITES);
+    const sitesFromLocalStorage = JSON.parse(
+      localStorage.getItem('sitesToSearch')
+    );
+
+    // Fetch direction must be added from Local Storage - ENV issues
+    const addReqDirection = sitesFromLocalStorage?.map(siteFromLS => ({
+      ...siteFromLS,
+      reqDirection: SITES.filter(site => site.id === siteFromLS.id)
+        .map(s => s.reqDirection)
+        .toString(),
+    }));
+
+    setSites(addReqDirection || SITES);
   }, []);
 
   const contextValue = { sites, setSites };
