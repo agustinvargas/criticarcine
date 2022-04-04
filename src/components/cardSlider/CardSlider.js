@@ -1,17 +1,44 @@
-import React from 'react';
-import styles from './cardSlider.module.css';
-import Card from '../card/Card';
+import React, { useRef } from 'react';
 import { BiChevronRightCircle, BiChevronLeftCircle } from 'react-icons/bi';
+import Card from '../card/Card';
+import styles from './cardSlider.module.css';
 
 const CardSlider = ({ posts, id }) => {
+  const container = useRef({
+    isDown: false,
+    startX: 0,
+    scrollLeft: 0,
+  });
+
   const slideLeft = () => {
-    const slider = document.getElementById(`slider-${id}`);
-    slider.scrollLeft -= 1100;
+    container.current.scrollLeft -= 1100;
   };
 
   const slideRigth = () => {
-    const slider = document.getElementById(`slider-${id}`);
-    slider.scrollLeft += 1100;
+    container.current.scrollLeft += 1100;
+  };
+
+  const handleMouseLeave = () => {
+    container.isDown = false;
+  };
+
+  const handleMouseDown = e => {
+    container.current.isDown = true;
+    container.current.startX = e.pageX - container.current.offsetLeft;
+    container.current.style.cursor = 'grabbing';
+  };
+
+  const handleMouseUp = () => {
+    container.current.isDown = false;
+    container.current.style.cursor = 'grab';
+  };
+
+  const handleMouseMove = e => {
+    if (!container.current.isDown) return;
+    e.preventDefault();
+    const x = e.pageX - container.current.offsetLeft;
+    const walk = (x - container.current.startX) * 3; //scroll-fast
+    container.current.scrollLeft -= walk;
   };
 
   const needArrows = posts?.length < 3 && 'none';
@@ -25,7 +52,15 @@ const CardSlider = ({ posts, id }) => {
         style={{ display: needArrows }}
         onClick={slideLeft}
       />
-      <div className={styles.postsContainer} id={`slider-${id}`}>
+      <div
+        ref={container}
+        onMouseUp={handleMouseUp}
+        onMouseMove={e => handleMouseMove(e)}
+        onMouseDown={e => handleMouseDown(e)}
+        onMouseLeave={handleMouseLeave}
+        className={styles.postsContainer}
+        id={`slider-${id}`}
+      >
         {posts?.map((post, i) => (
           <Card
             key={i}

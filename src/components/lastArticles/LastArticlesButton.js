@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@nextui-org/react';
-// import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const LastArticlesButton = () => {

@@ -4,9 +4,18 @@ import { MdSettings } from 'react-icons/md';
 import Modal from '../modal/Modal';
 import SitesList from './SitesList';
 import styles from './settings.module.css';
+import useSitesChecked from '../../hooks/useSitesChecked';
+import { orderByName, SITES } from '../../utils/sitesList';
 
 const Settings = () => {
   const { setVisible, bindings } = useModal(false);
+  const { setSites } = useSitesChecked();
+
+  const handleReset = () => {
+    const orderSites = orderByName(SITES);
+    localStorage.removeItem('sitesToSearch');
+    setSites(orderSites);
+  };
 
   return (
     <>
@@ -21,6 +30,7 @@ const Settings = () => {
         isPost={false}
         title='Elegí los sitios en los que querés buscar'
         content={<SitesList />}
+        reset={handleReset}
       />
     </>
   );

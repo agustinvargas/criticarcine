@@ -17,7 +17,7 @@ export default function Modal({
   img,
   author,
   isPost,
-  fc,
+  reset,
 }) {
   const { sites } = useSitesChecked();
 
@@ -54,6 +54,11 @@ export default function Modal({
         <Button auto flat color='error' onClick={() => setVisible(false)}>
           Cerrar
         </Button>
+        {!isPost && reset && (
+          <Button auto color='warning' onClick={reset}>
+            Resetear
+          </Button>
+        )}
         {isPost ? (
           <Button
             as={Link}
@@ -64,10 +69,6 @@ export default function Modal({
             css={{ color: 'white' }}
           >
             Leer en sitio original
-          </Button>
-        ) : !isPost && fc ? (
-          <Button auto css={{ color: 'white' }}>
-            Actualizar
           </Button>
         ) : (
           <Button

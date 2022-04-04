@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Container, Input, Loading, useInput } from '@nextui-org/react';
-import axios from 'axios';
+import { Container, Input, useInput } from '@nextui-org/react';
 import { regex } from '../../utils/regexSearch';
 import useDataAPIs from '../../hooks/useDataAPIs';
 import useSitesChecked from '../../hooks/useSitesChecked';
+import { fetchDataFromSites } from '../../utils/fetchSitesData';
 
 const SearchBar = () => {
   const { setData, setLoading } = useDataAPIs();
@@ -30,40 +30,11 @@ const SearchBar = () => {
       }
       (async () => {
         try {
-          console.log('PALABRA A BUSCAR', value);
           setLoading(true);
-          const valToString = value.toString();
-          const queries = sites.map(site => {
-            return (
-              site.reqDirection +
-              `?per_page=5&_embed=true&search=${valToString}`
-            );
-          });
-
-          const allData = await Promise.allSettled(
-            queries.map(query => axios.get(query))
-          ).then(values => {
-            console.log('values', values);
-            const dataWithSiteRef = values.map((value, i) => {
-              const ob = {
-                ...value,
-                site: sites[i].name,
-                id: sites[i].id,
-                avatar: sites[i].avatar,
-              };
-              console.log('ob', ob);
-              return ob;
-            });
-            const onlySuccessData = dataWithSiteRef.filter(
-              data => data.status === 'fulfilled' && data.value.data.length > 0
-            );
-
-            console.log('onlySuccessData', onlySuccessData);
-            return onlySuccessData;
-          });
-          setData(allData);
+          const data = await fetchDataFromSites(sites, value);
+          setData(data);
         } catch (e) {
-          console.log('ERROR', e.message);
+          console.log(e.message);
         } finally {
           setLoading(false);
         }
@@ -96,7 +67,7 @@ const SearchBar = () => {
         helperText={helper.text}
         type='text'
         aria-label='Buscar'
-        placeholder='Buscá algo, por ejemplo, El Padrino'
+        placeholder='Buscá algo, por ejemplo, Licorice Pizza'
         css={{
           w: '100%',
           m: 'auto',

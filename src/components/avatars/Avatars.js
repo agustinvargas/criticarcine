@@ -1,6 +1,5 @@
 import { Avatar, Tooltip } from '@nextui-org/react';
 import React from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Avatars = ({ data }) => {

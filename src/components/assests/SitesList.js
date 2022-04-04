@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Checkbox } from '@nextui-org/react';
 import useSitesChecked from '../../hooks/useSitesChecked';
 import { SITES } from '../../utils/sitesList';

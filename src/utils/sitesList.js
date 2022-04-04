@@ -1,9 +1,3 @@
-// export const sitesListDefault = [
-//   'Hacerse la crítica',
-//   'Micropsia',
-//   'Con los ojos abiertos',
-// ];
-
 export const SITES = [
   {
     name: 'Hacerse la crítica',
@@ -60,3 +54,15 @@ export const SITES = [
     avatar: 'https://www.lacosacine.com/wp-content/uploads/2018/12/logo.png',
   },
 ];
+
+export const orderByName = array => {
+  return array.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+};

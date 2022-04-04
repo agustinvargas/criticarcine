@@ -41,16 +41,7 @@ const Navbar = () => {
           >
             Criticar
           </Text>
-
-          {/* <Text
-              size={15}
-              weight='bold'
-              css={{
-                textGradient: '45deg, $blue500 -20%, $pink500 50%',
-              }}
-            > */}
           <em>Críticas de cine en un solo lugar</em>
-          {/* </Text> */}
         </Container>
       </Grid>
       <Grid

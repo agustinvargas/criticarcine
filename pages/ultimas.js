@@ -1,13 +1,15 @@
-import { SITES } from '../src/utils/sitesList';
+import { orderByName, SITES } from '../src/utils/sitesList';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Button, Container, Loading, Spacer, Text } from '@nextui-org/react';
+import { Container, Loading, Spacer, Text } from '@nextui-org/react';
 import SiteContainer from '../src/components/siteContainer/SiteContainer';
 import { IoReloadCircleSharp } from 'react-icons/io5';
 import Avatars from '../src/components/avatars/Avatars';
+import { fetchDataFromSites } from '../src/utils/fetchSitesData';
 
 export async function getStaticProps() {
-  const queries = SITES.map(site => {
+  const orderSites = orderByName(SITES);
+  const queries = orderSites.map(site => {
     return site.reqDirection + `?per_page=3&_embed=true`;
   });
 
@@ -18,9 +20,9 @@ export async function getStaticProps() {
   const dataWithSiteRef = fetching.map((value, i) => {
     const ob = {
       ...value,
-      site: SITES[i].name,
-      id: SITES[i].id,
-      avatar: SITES[i].avatar,
+      site: orderSites[i].name,
+      id: orderSites[i].id,
+      avatar: orderSites[i].avatar,
     };
     return ob;
   });
@@ -65,46 +67,16 @@ const LastAticles = ({ time, data }) => {
 
   const handleReloaded = () => {
     (async () => {
-      setLoadingReloaded(true);
-
-      const queries = SITES.map(site => {
-        return site.reqDirection + `?per_page=3&_embed=true`;
-      });
-
-      const fetching = await Promise.allSettled(
-        queries.map(query => axios.get(query))
-      );
-
-      const dataWithSiteRef = fetching.map((value, i) => {
-        const ob = {
-          ...value,
-          site: SITES[i].name,
-          id: SITES[i].id,
-          avatar: SITES[i].avatar,
-        };
-        return ob;
-      });
-
-      const filter = dataWithSiteRef.filter(
-        data => data.status === 'fulfilled' && data.value.data.length > 0
-      );
-
-      const data = filter.map(data => {
-        const obj = {
-          value: {
-            data: data.value.data,
-          },
-          site: data.site,
-          id: data.id,
-          avatar: data.avatar,
-        };
-
-        return obj;
-      });
-
-      setSafeD(data);
-      setDate(new Date().toLocaleString('es-AR'));
-      setLoadingReloaded(false);
+      try {
+        setLoadingReloaded(true);
+        const data = await fetchDataFromSites(SITES, false, '3');
+        setSafeD(data);
+        setDate(new Date().toLocaleString('es-AR'));
+      } catch (e) {
+        console.log(e.message);
+      } finally {
+        setLoadingReloaded(false);
+      }
     })();
   };
 
@@ -116,23 +88,19 @@ const LastAticles = ({ time, data }) => {
             display: 'flex',
             flexDirection: 'column',
             padding: '5px',
-
-            // alignItems: 'center',
-            // gap: '.5em',
-            // padding: 0,
-            // justifyContent: 'center',
           }}
         >
           <Container
             css={{
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '.5em',
               padding: '5px',
             }}
           >
+            <small>Última actualización: {date} (Arg)</small>
             {loadingReloaded ? (
               <Loading size='sm' type='points-opacity' />
             ) : (
@@ -142,7 +110,6 @@ const LastAticles = ({ time, data }) => {
                 className='cursor-pointer'
               />
             )}
-            <small>Última actualización: {date} (Arg)</small>
           </Container>
           <Text
             h1
