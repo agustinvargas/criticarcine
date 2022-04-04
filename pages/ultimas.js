@@ -63,8 +63,6 @@ const LastAticles = ({ time, data }) => {
     setSafeD(data);
   }, [data]);
 
-  console.log('data', data);
-
   const handleReloaded = () => {
     (async () => {
       try {
