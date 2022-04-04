@@ -10,6 +10,9 @@ const CardSlider = ({ posts, id }) => {
     scrollLeft: 0,
   });
 
+  const needArrows = posts?.length < 3 && 'none';
+  const needDrag = Boolean(posts?.length > 2);
+
   const slideLeft = () => {
     container.current.scrollLeft -= 1100;
   };
@@ -19,18 +22,25 @@ const CardSlider = ({ posts, id }) => {
   };
 
   const handleMouseLeave = () => {
-    container.isDown = false;
+    if (needDrag) {
+      container.isDown = false;
+    }
   };
 
   const handleMouseDown = e => {
-    container.current.isDown = true;
-    container.current.startX = e.pageX - container.current.offsetLeft;
-    container.current.style.cursor = 'grabbing';
+    if (needDrag) {
+      container.current.isDown = true;
+      container.current.startX = e.pageX - container.current.offsetLeft;
+      container.current.style.cursor = 'grabbing';
+    }
   };
 
   const handleMouseUp = () => {
-    container.current.isDown = false;
-    container.current.style.cursor = 'grab';
+    if (needDrag) {
+      container.current.isDown = false;
+
+      container.current.style.cursor = 'grab';
+    }
   };
 
   const handleMouseMove = e => {
@@ -40,8 +50,6 @@ const CardSlider = ({ posts, id }) => {
     const walk = (x - container.current.startX) * 3; //scroll-fast
     container.current.scrollLeft -= walk;
   };
-
-  const needArrows = posts?.length < 3 && 'none';
 
   return (
     <div className={styles.container}>
