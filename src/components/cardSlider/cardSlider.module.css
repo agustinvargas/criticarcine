@@ -5,7 +5,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  cursor: initial;
+  cursor: grab;
 }
 
 .postsContainer {

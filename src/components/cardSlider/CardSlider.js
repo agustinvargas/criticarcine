@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BiChevronRightCircle, BiChevronLeftCircle } from 'react-icons/bi';
 import Card from '../card/Card';
 import styles from './cardSlider.module.css';
@@ -12,6 +12,12 @@ const CardSlider = ({ posts, id }) => {
 
   const needArrows = posts?.length < 3 && 'none';
   const needDrag = Boolean(posts?.length > 2);
+
+  useEffect(() => {
+    if (!needDrag) {
+      container.current.style.cursor = 'initial';
+    }
+  }, [needDrag]);
 
   const slideLeft = () => {
     container.current.scrollLeft -= 1100;
@@ -38,7 +44,6 @@ const CardSlider = ({ posts, id }) => {
   const handleMouseUp = () => {
     if (needDrag) {
       container.current.isDown = false;
-
       container.current.style.cursor = 'grab';
     }
   };

@@ -4,7 +4,7 @@ import { BsFileArrowUp } from 'react-icons/bs';
 
 const ScrollToUp = () => {
   return (
-    <ScrollToTop showUnder={750} style={{ zIndex: '9999999' }}>
+    <ScrollToTop showUnder={750} style={{ zIndex: '9999' }}>
       <BsFileArrowUp size='2em' />
     </ScrollToTop>
   );
