@@ -17,7 +17,7 @@ const SitesCheckedProvider = ({ children }) => {
       reqDirection: SITES.filter(site => site.id === siteFromLS.id)
         .map(s => s.reqDirection)
         .toString(),
-      name: SITES.filter(site => site.id === siteFromLS.id).map(s => s.name),
+      // name: SITES.filter(site => site.id === siteFromLS.id).map(s => s.name),
       avatar: SITES.filter(site => site.id === siteFromLS.id).map(
         s => s.avatar
       ),
