@@ -3,8 +3,10 @@ import React from 'react';
 import Settings from '../assests/Settings';
 import SwitcherTheme from '../assests/SwitcherTheme';
 import LastArticlesButton from '../lastArticles/LastArticlesButton';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
+  const router = useRouter();
   return (
     <Grid.Container
       justify='center'
@@ -37,7 +39,9 @@ const Navbar = () => {
               justifyContent: 'center',
               margin: 'auto',
               textGradient: '45deg, $blue500 -20%, $pink500 50%',
+              cursor: 'pointer',
             }}
+            onClick={() => router.push('/')}
           >
             Criticar
           </Text>

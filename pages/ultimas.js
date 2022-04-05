@@ -46,7 +46,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      time: new Date().toLocaleString('es-AR'),
+      time: new Date().toISOString(),
       data,
     },
     // 4 hours
@@ -55,8 +55,10 @@ export async function getStaticProps() {
 }
 
 const LastAticles = ({ time, data }) => {
+  const d = new Date(time);
+  const dateToUTM = d.toLocaleString('es-AR');
   const [safeD, setSafeD] = useState(false);
-  const [date, setDate] = useState(time);
+  const [date, setDate] = useState(dateToUTM);
   const [loadingReloaded, setLoadingReloaded] = useState(false);
 
   useEffect(() => {
@@ -98,7 +100,7 @@ const LastAticles = ({ time, data }) => {
               padding: '5px',
             }}
           >
-            <small>Última actualización: {date} (Arg)</small>
+            <small>Última actualización: {date} ARG</small>
             {loadingReloaded ? (
               <Loading size='sm' type='points-opacity' />
             ) : (

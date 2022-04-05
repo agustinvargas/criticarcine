@@ -17,6 +17,7 @@ const Card = ({ date, title, excerpt, link, content, img, author }) => {
   const dateFormatted = dateFormat(date, 'dd/MM/yy');
   const excerptFormatted = contentFormat(excerpt);
   const contentFormatted = contentFormat(content);
+  const titleFormatted = contentFormat(title);
   const { setVisible, bindings } = useModal(false);
 
   return (
@@ -29,7 +30,7 @@ const Card = ({ date, title, excerpt, link, content, img, author }) => {
             </Text>
 
             <Text h3 color='white' className={styles.title}>
-              {title}
+              {titleFormatted && parse(titleFormatted)}
             </Text>
           </Col>
         </CardNext.Header>
