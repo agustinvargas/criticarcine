@@ -76,7 +76,7 @@ export default function Modal({
             auto
             onClick={() => {
               const excludeReqDirection = sites.map(
-                ({ reqDirection, ...rest }) => rest
+                ({ reqDirection, name, avatar, ...rest }) => rest
               );
               localStorage.setItem(
                 'sitesToSearch',

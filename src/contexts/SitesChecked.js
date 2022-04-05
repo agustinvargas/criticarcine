@@ -12,14 +12,18 @@ const SitesCheckedProvider = ({ children }) => {
     );
 
     // Fetch direction must be added from Local Storage - ENV issues
-    const addReqDirection = sitesFromLocalStorage?.map(siteFromLS => ({
+    const addData = sitesFromLocalStorage?.map(siteFromLS => ({
       ...siteFromLS,
       reqDirection: SITES.filter(site => site.id === siteFromLS.id)
         .map(s => s.reqDirection)
         .toString(),
+      name: SITES.filter(site => site.id === siteFromLS.id).map(s => s.name),
+      avatar: SITES.filter(site => site.id === siteFromLS.id).map(
+        s => s.avatar
+      ),
     }));
 
-    setSites(addReqDirection || SITES);
+    setSites(addData || SITES);
   }, []);
 
   const contextValue = { sites, setSites };

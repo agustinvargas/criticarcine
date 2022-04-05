@@ -49,8 +49,8 @@ export async function getStaticProps() {
       time: new Date().toISOString(),
       data,
     },
-    // 4 hours
-    revalidate: 14400,
+    // 3 hours
+    revalidate: 10800,
   };
 }
 
