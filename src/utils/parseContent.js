@@ -36,6 +36,10 @@ function contentFormat(excerpt) {
       // these attributes would make sense if we did.
       img: ['src', 'srcset', 'alt', 'title', 'width', 'height', 'loading'],
     },
+    // Custom filters
+    exclusiveFilter: function (frame) {
+      return frame.tag === 'p' && !frame.text.trim();
+    },
     // Lots of these won't come up by default because we don't allow them
     selfClosing: [
       'img',

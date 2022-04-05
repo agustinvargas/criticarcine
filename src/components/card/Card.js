@@ -18,6 +18,7 @@ const Card = ({ date, title, excerpt, link, content, img, author }) => {
   const excerptFormatted = contentFormat(excerpt);
   const contentFormatted = contentFormat(content);
   const titleFormatted = contentFormat(title);
+  const authorFormatted = contentFormat(author);
   const { setVisible, bindings } = useModal(false);
 
   return (
@@ -85,11 +86,11 @@ const Card = ({ date, title, excerpt, link, content, img, author }) => {
       <Modal
         setVisible={setVisible}
         bindings={bindings}
-        title={title}
+        title={titleFormatted && parse(titleFormatted)}
         content={contentFormatted && parse(contentFormatted)}
         link={link}
         img={img}
-        author={author}
+        author={authorFormatted && parse(authorFormatted)}
         isPost={true}
       />
     </>
