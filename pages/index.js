@@ -48,7 +48,7 @@ const Home = () => {
         ) : (
           !loading && (
             <GifLoader
-              src='https://i.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.webp'
+              src='https://res.cloudinary.com/dp2no7dm6/image/upload/v1649708197/criticar/giphy_3_wvardq.webp'
               txt={
                 data?.length === 0
                   ? 'No hay resultados'
