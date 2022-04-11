@@ -103,7 +103,7 @@ const LastAticles = ({ time, data }) => {
         </Container>
       </section>
       <main>
-        {data?.length > 0 && !loadingReloaded && <Avatars data={data} />}
+        {data?.length > 0 && <Avatars data={data} />}
         {data?.length > 0 ? (
           data?.map(el => <SiteContainer key={el?.id} data={el} />)
         ) : (
