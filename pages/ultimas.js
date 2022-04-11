@@ -49,35 +49,17 @@ export async function getStaticProps() {
       time: new Date().toISOString(),
       data,
     },
-    // 3 hours
-    revalidate: 10800,
+    // 1 hour
+    revalidate: 3600,
   };
 }
 
 const LastAticles = ({ time, data }) => {
   const d = new Date(time);
   const dateToUTM = d.toLocaleString('es-AR');
-  const [safeD, setSafeD] = useState(false);
-  const [date, setDate] = useState(dateToUTM);
-  const [loadingReloaded, setLoadingReloaded] = useState(false);
-
-  useEffect(() => {
-    setSafeD(data);
-  }, [data]);
 
   const handleReloaded = () => {
-    (async () => {
-      try {
-        setLoadingReloaded(true);
-        const data = await fetchDataFromSites(SITES, false, '3');
-        setSafeD(data);
-        setDate(new Date().toLocaleString('es-AR'));
-      } catch (e) {
-        console.log(e.message);
-      } finally {
-        setLoadingReloaded(false);
-      }
-    })();
+    window.location.reload();
   };
 
   return (
@@ -100,7 +82,7 @@ const LastAticles = ({ time, data }) => {
               padding: '5px',
             }}
           >
-            <small>Última actualización: {date} ARG</small>
+            <small>Última actualización: {dateToUTM} ARG</small>
             {loadingReloaded ? (
               <Loading size='sm' type='points-opacity' />
             ) : (
@@ -127,9 +109,9 @@ const LastAticles = ({ time, data }) => {
         </Container>
       </section>
       <main>
-        {safeD?.length > 0 && !loadingReloaded && <Avatars data={safeD} />}
-        {safeD?.length > 0 ? (
-          safeD?.map(el => <SiteContainer key={el?.id} data={el} />)
+        {data?.length > 0 && !loadingReloaded && <Avatars data={data} />}
+        {data?.length > 0 ? (
+          data?.map(el => <SiteContainer key={el?.id} data={el} />)
         ) : (
           <>
             <Spacer y={2} />
