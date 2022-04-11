@@ -1,11 +1,9 @@
 import { orderByName, SITES } from '../src/utils/sitesList';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Container, Loading, Spacer, Text } from '@nextui-org/react';
 import SiteContainer from '../src/components/siteContainer/SiteContainer';
 import { IoReloadCircleSharp } from 'react-icons/io5';
 import Avatars from '../src/components/avatars/Avatars';
-import { fetchDataFromSites } from '../src/utils/fetchSitesData';
 
 export async function getStaticProps() {
   const orderSites = orderByName(SITES);
@@ -83,15 +81,11 @@ const LastAticles = ({ time, data }) => {
             }}
           >
             <small>Última actualización: {dateToUTM} ARG</small>
-            {loadingReloaded ? (
-              <Loading size='sm' type='points-opacity' />
-            ) : (
-              <IoReloadCircleSharp
-                size='1.5em'
-                onClick={handleReloaded}
-                className='cursor-pointer'
-              />
-            )}
+            <IoReloadCircleSharp
+              size='1.5em'
+              onClick={handleReloaded}
+              className='cursor-pointer'
+            />
           </Container>
           <Text
             h1
