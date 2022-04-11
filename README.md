@@ -5,7 +5,7 @@ App that allows you to search for movie reviews on Argentine film blogs and maga
 
 ## Screenshots
 
-![criticar](https://res.cloudinary.com/dp2no7dm6/image/upload/v1649709548/criticar/Criticar_-_11_April_2022_1_t1hua2.gif)
+![criticar](https://res.cloudinary.com/dp2no7dm6/image/upload/v1649710381/criticar/shr2v-2ppym_ebzirf.gif)
 
 ## Demo
 
