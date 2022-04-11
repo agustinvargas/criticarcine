@@ -29,7 +29,7 @@ const CardSlider = ({ posts, id }) => {
 
   const handleMouseLeave = () => {
     if (needDrag) {
-      container.isDown = false;
+      container.current.isDown = false;
     }
   };
 
